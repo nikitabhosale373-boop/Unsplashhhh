@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Local css Link -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        #img,
+        #pen{
+            position: relative;
+        }
+
+        #img:hover::after{
+            content: "Photos";
+            position: absolute;
+            left: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #000;
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            z-index: 999;
+            font-family: "Roboto", sans-serif;
+        }
+
+        #pen:hover::after{
+            content: "Illustrations";
+            position: absolute;
+            left: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #000;
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            z-index: 999;
+            font-family: "Roboto", sans-serif;
+        }
+    </style>
+
+
+</head>
+<body>
+    
+    <section class="navigation fixed top-[50px] w-full z-20 h-[14vh] p-0 m-0 md:sticky md:top-0 md:h-[16%] md:border-b md:border-[#f0f0f0] md:bg-white bg-white">
+        <div class="nav p-0 bg-white h-1/2 w-full flex md:pt-[12px] align-center justify-center">
+            <div class="left-nav pt-[0px] pb-[10px] mb-[0px] flex items-center w-full px-[6px] md:flex-1 md:flex md:items-center md:justify-start md:px-5 md:pl-[74px] relative overflow-hidden">
+                <i class="ri-search-line absolute top-[12px] left-[20px] md:top-[7.5px] md:left-[88px] text-[16px] md:text-[14px] text-[#767676] cursor-pointer"></i>
+                <input type="text" placeholder="Search photos and illustrations" class="w-full align-center pt-[6px] pb-[7px] py-[5px] pl-[40px] pr-4 rounded-[30px] bg-[#eeeeee] outline-none md:text-[15px] text-[14px]">
+                <!-- <i class="ri-camera-2-line" id="camera"></i> -->
+                <i class="ri-qr-scan-2-line hidden md:block absolute top-[6px] md:top-[7px] left-[1102px] text-[13px] text-[#767676] cursor-pointer" id="camera"></i>
+            </div>
+            <div class="right-nav hidden md:flex items-center gap-[15px] px-5 pr-[25px]">
+                <button id="getunsplash" class="bg-transparent text-black text-[12px] font-medium cursor-pointer">Get Unsplash+</button>
+                <button id="submit-img" class="px-[10px] py-[6px] rounded-lg border border-[#767676] text-[12px] cursor-pointer font-medium text-[#767676] bg-transparent">Submit an image</button>
+            </div>
+        </div>
+        <div class="menu bg-white text-[14px] md:h-[40px] h-[50px] bg-white font-semibold md:pt-[5px] border-b border-[#767676] pt-[4px] pb-[0px] flex items-start gap-4 px-[12px] pt-[0px] text-[#767676] [&::-webkit-scrollbar]:hidden cursor-pointer overflow-x-auto whitespace-nowrap md:pl-20 md:px-5 md:mt-0 md:p-[12px]  ">
+            <a href="#" class="featured text-[#767676] text-[12px] font-medium hover:text-black hover:border-b-2 hover:border-black md:hover:text-black">Featured</a>
+            <a href="#" class="summer hover:text-black hover:border-b-2 hover:border-black md:hover:text-black">NewSummer</a>
+            <a href="#" class="wallpaper md:hover:text-black">Wallpapers</a>
+            <a href="#" class="renders md:hover:text-black">3D Renders</a>
+            <a href="#" class="nature md:hover:text-black">Nature</a>
+            <a href="#" class="texture md:hover:text-black">Textures</a>
+            <a href="#" class="film md:hover:text-black">Film</a>
+            <a href="#" class="architecture md:hover:text-black">Architecture</a>
+            <a href="#"  class="photography md:hover:text-black">Street Photography</a>
+            <a href="#" class="experimental md:hover:text-black">Experimental</a>
+            <a href="#" class="travel md:hover:text-black">Travel</a>
+            <a href="#" class="people md:hover:text-black">People</a>
+        </div>
+    </section>
+
+    <section class="sidebar mt-[0px] text-[22px] flex w-full h-[6vh] gap-[36vw] px-[10px] fixed top-0 left-0 bg-white z-20 md:block md:w-[60px] md:min-w-[60px] md:h-screen md:border-r md:border-gray-300 md:py-3 md:cursor-pointer ">
+        <div class="side-upper text-[22px] flex flex-row h-full items-center gap-[24px] md:text-[23px] md:text-[#767676] md:w-full md:h-[70%] md:flex-col md:justify-start md:gap-[25px] md:mt-[3px]">
+            <i class="ri-unsplash-fill text-black" id="unsplash"></i>
+            <i class="ri-image-line cursor-pointer md:hover:text-black md:hover:bg-[#e0e0e0] md:hover:rounded-[4px] md:hover:px-[4px]  md:hover:py-[0px] transition-all " id="img"></i>
+            <i class="ri-pen-nib-fill cursor-pointer md:hover:text-black md:hover:bg-[#e0e0e0] md:hover:rounded-[4px] md:hover:px-[4px]  md:hover:py-[0px] transition-all" id="pen"></i>
+            <hr class="hidden md:block w-[40%]">
+            <i class="ri-folders-line hidden md:block"></i>
+            <i class="ri-download-2-line hidden md:block"></i>
+            <hr class="hidden md:block w-[40%]">
+            <i class="ri-bookmark-line hidden md:block"></i>
+        </div>
+        <div class="side-bottom flex flex-row h-full items-center text-[22px] gap-[24px] md:w-full md:h-[30%] md:flex-col md:justify-end md:gap-[20px] text-[18px] md:text-[20px] text-[#767676]">
+            <i class="ri-notification-2-line"></i>
+            <i class="ri-account-circle-fill"></i>
+            <i class="ri-menu-line"></i>
+        </div>
+    </section>
+
+    <section class="hero flex gap-5 px-[20px] py-[30px] h-[28vh] w-full overflow-x-auto snap-x snap-mandatory mt-[160px] ml-[10px] mb-[6px] md:h-[54vh] md:px-[90px] md:pl-[130px] md:py-10 md:mt-0 md:ml-0 md:overflow-visible [&::-webkit-scrollbar]:hidden">
+        <div class="card1 h-full w-full md:w-1/2 flex-shrink-0 snap-start rounded-[10px]  ">
+            <img src="card1.png" alt="">
+        </div>
+        <div class="card2 h-full w-full md:w-1/4 flex-shrink-0 snap-start rounded-[10px] border border-[#e4dcdc] overflow-hidden ">
+            <img src="card2.png" alt="">
+        </div>
+        <div class="card3 h-full w-full md:w-1/4 flex-shrink-0 snap-start rounded-[10px] border border-[#e4dcdc] overflow-hidden">
+            <img src="card3.png" alt="">
+        </div>
+    </section>
+
+    <section class="content pl-[10px] pr-0 md:pl-[130px] md:pr-[90px]">
+        <div class="images columns-1 md:columns-3 gap-[15px] w-full mb-[15px] block cursor-zoom-in"></div>
+    </section>
+
+    <script src="scripts.js"></script>
+
+</body>
+</html>
+
+
+
+
+
